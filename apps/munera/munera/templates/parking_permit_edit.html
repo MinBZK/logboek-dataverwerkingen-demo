@@ -1,0 +1,54 @@
+{% extends "layouts/base.html" %}
+{% load i18n widget_tweaks %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">{% translate "Parking permit change" %}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+      <div class="col-6">
+        <form class="card" method="post" action="{% url 'parking_permit_edit' parking_permit.id %}">
+          {% csrf_token %}
+          <div class="card-header">
+            <h3 class="card-title">{% translate "Parking permit" %}: {{ parking_permit.permit_number }}</h3>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <div class="form-label">{% translate "Current registration number"%}</div>
+              <div class="form-control-plaintext">{{ parking_permit.registration_number }}</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="{{ form.registration_number.id_for_label }}">{{ form.registration_number.label }}</label>
+              {{ form.registration_number | add_class:"form-control" }}
+              <small class="form-hint">ZV975T, ZV919R</small>
+            </div>
+            {% if form.error_not_owned %}
+            <div class="alert alert-danger" role="alert">
+              <div>
+                <h4 class="alert-title">{% translate "Not the onwer" %}</h4>
+                <div class="text-secondary">{% translate "The registration number does not beglong to the current user" %}</div>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+          <div class="card-footer text-end">
+            <div class="d-flex">
+              <a href="{% url 'parking_permit_list' %}" class="btn btn-link">{% translate "Cancel" %}</a>
+              <button type="submit" class="btn btn-primary ms-auto">{% translate "Request change" %}</button>
+            </div>
+          </div>
+        </form>
+            </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% load static i18n %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'dist/app.css' %}">
+  <title>Mijn Gemeente</title>
+</head>
+<body class=" d-flex flex-column">
+  <div class="page page-center">
+    <div class="container container-tight py-4">
+      <div class="card card-md">
+        <div class="card-body">
+          <h2 class="h2 text-center mb-4">{% translate "Login to your account" %}</h2>
+          {% if form.errors %}
+          <p>{% translate "Your username and password didn't match. Please try again." %}</p>
+          {% endif %}
+          <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label" for="username">{% translate "Username" %}</label>
+              <input id="username" name="username" class="form-control" type="text" value="{{ form.username.value | default_if_none:'' }}" {% if not form.username.value %} autofocus{% endif %}>
+            </div>
+            <div class="mb-2">
+              <label class="form-label" for="password">{% translate "Password" %}</label>
+              <div class="input-group input-group-flat">
+                <input id="password" name="password" class="form-control" type="password" autocomplete="off" {% if form.username.value %} autofocus{% endif %}>
+              </div>
+            </div>
+            <div class="form-footer">
+              <button class="btn btn-primary w-100" type="submit">{% translate "Login" %}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'dist/app.js' %}" defer></script>
+</body>
+</html>

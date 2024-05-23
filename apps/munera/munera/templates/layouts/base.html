@@ -1,0 +1,48 @@
+{% load static i18n  %}<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'dist/app.css' %}">
+  <title>Mijn Gemeente - Logboek dataverwerkignen demo</title>
+</head>
+<body>
+  <div class="page">
+    <header class="navbar navbar-expand-md d-print-none" data-bs-theme="dark">
+      <div class="container-xl">
+        <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+          <a href="{% url 'index' %}">Mijn Gemeente</a>
+        </h1>
+
+        <div class="navbar-nav flex-row order-md-last">
+          <div class="nav-item me-3">
+            <div>{{ user.username }}</div>
+          </div>
+          <div class="nav-item ">
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button class="reset" type="submit">{% translate "Log out" %}</button>
+            </form>
+          </div>
+      </div>
+
+        <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
+          <nav>
+            <ul class="navbar-nav flex-row order-md-last">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'parking_permit_list' %}">
+                  <span class="nav-link-title">{% translate "Parking permits" %}</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="page-wrapper">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+  <script src="{% static 'dist/app.js' %}" defer></script>
+</body>
+</html>

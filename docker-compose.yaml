@@ -1,0 +1,106 @@
+name: logboek-dataverwerkingen-demo
+
+services:
+  munera:
+    image: ${MUNERA_IMAGE}
+    container_name: munera
+    build: ./apps/munera
+    ports:
+      - "127.0.0.1:${MUNERA_PORT}:${MUNERA_PORT}"
+    environment:
+      - MUNERA_PORT
+      - MUNERA_ALLOWED_HOSTS
+      - MUNERA_LOGBOEK_ENDPOINT
+      - MUNERA_CURRUS_URL
+    depends_on:
+      - munera-logboek
+      - currus
+
+  munera-logboek:
+    image: ${LOGBOEK_IMAGE}
+    container_name: munera-logboek
+    environment:
+      LISTEN_ADDRESS: "0.0.0.0:${MUNERA_LOGBOEK_PORT}"
+      STORAGE_TYPE: "cassandra"
+      STORAGE_CASSANDRA_SERVERS: "munera-cassandra:9042"
+    depends_on:
+      munera-cassandra:
+        condition: service_healthy
+
+  munera-cassandra:
+    image: ${CASSANDRA_IMAGE}
+    container_name: munera-cassandra
+    volumes:
+      - cassandra:/var/lib/cassandra
+    environment:
+      CASSANDRA_CLUSTER_NAME: logboek-munera
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+
+  currus:
+    image: ${CURRUS_IMAGE}
+    container_name: currus
+    build: ./apps/currus
+    environment:
+      - LISTEN_ADDRESS=${CURRUS_LISTEN_ADDRESS}
+      - LOGBOEK_ENDPOINT=${CURRUS_LOGBOEK_ENDPOINT}
+      - LAMINA_URL=${CURRUS_LAMINA_URL}
+    depends_on:
+      - currus-logboek
+      - lamina
+
+  currus-logboek:
+    image: ${LOGBOEK_IMAGE}
+    container_name: currus-logboek
+    environment:
+      LISTEN_ADDRESS: "0.0.0.0:${CURRUS_LOGBOEK_PORT}"
+      STORAGE_TYPE: "sqlite"
+      STORAGE_SQLITE_PATH: /var/lib/logboek/logboek-currus.db
+    volumes:
+      - logboek:/var/lib/logboek
+
+  lamina:
+    image: ${LAMINA_IMAGE}
+    container_name: lamina
+    build: ./apps/lamina
+    environment:
+      - LISTEN_ADDRESS=${LAMINA_LISTEN_ADDRESS}
+      - LOGBOEK_ENDPOINT=${LAMINA_LOGBOEK_ENDPOINT}
+    depends_on:
+      - lamina-logboek
+
+  lamina-logboek:
+    image: ${LOGBOEK_IMAGE}
+    container_name: lamina-logboek
+    environment:
+      LISTEN_ADDRESS: "0.0.0.0:${LAMINA_LOGBOEK_PORT}"
+      STORAGE_TYPE: "sqlite"
+      STORAGE_SQLITE_PATH: /var/lib/logboek/logboek-lamina.db
+    volumes:
+      - logboek:/var/lib/logboek
+
+  grafana:
+    image: ${GRAFANA_IMAGE}
+    container_name: grafana
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./apps/grafana/provisioning:/etc/grafana/provisioning
+      - ./apps/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - grafana:/var/lib/grafana
+      - logboek:/var/lib/logboek
+    environment:
+      GF_INSTALL_PLUGINS: "frser-sqlite-datasource,hadesarchitect-cassandra-datasource"
+
+networks:
+  default:
+    name: logboek-dataverwerkingen-demo
+    driver: bridge
+
+volumes:
+  logboek:
+  cassandra:
+  grafana:

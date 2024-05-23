@@ -1,0 +1,14 @@
+/assets/dist
+/instance
+
+/.venv
+__pycache__
+
+/.parcel-cache
+/.yarn/*
+!/.yarn/patches
+!/.yarn/plugins
+!/.yarn/releases
+!/.yarn/sdks
+!/.yarn/versions
+/.pnp.*

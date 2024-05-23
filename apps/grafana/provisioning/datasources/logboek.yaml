@@ -1,0 +1,36 @@
+apiVersion: 1
+
+datasources:
+  - name: Logboek Munera
+    uid: logboek-munera
+    type: hadesarchitect-cassandra-datasource
+    url: munera-cassandra:9042
+    access: proxy
+    editable: false
+    isDefault: true
+    jsonData:
+      consistency: ONE
+      keyspace: logboek
+    readOnly: true
+  - name: Logboek Currus
+    uid: logboek-currus
+    type: frser-sqlite-datasource
+    access: proxy
+    editable: false
+    isDefault: false
+    jsonData:
+      attachLimit: 0
+      path: /var/lib/logboek/logboek-currus.db
+      pathPrefix: "file:"
+    readOnly: true
+  - name: Logboek Lamina
+    uid: logboek-lamina
+    type: frser-sqlite-datasource
+    access: proxy
+    editable: false
+    isDefault: false
+    jsonData:
+      attachLimit: 0
+      path: /var/lib/logboek/logboek-lamina.db
+      pathPrefix: "file:"
+    readOnly: true

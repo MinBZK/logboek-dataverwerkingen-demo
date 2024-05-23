@@ -1,0 +1,20 @@
+[project]
+requires-python = ">= 3.12"
+
+[tool.pip-tools]
+generate_hashes = true
+strip_extras = true
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+known_django = "django"
+sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+lines_after_imports = 2
+skip = [".venv", ".yarn", "migrations"]
+
+[tool.flake8]
+ignore = ["E501"]
+extend_exclude = [".venv", ".yarn", "migrations"]

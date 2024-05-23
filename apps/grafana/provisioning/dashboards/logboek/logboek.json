@@ -1,0 +1,538 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "hadesarchitect-cassandra-datasource",
+        "uid": "logboek-munera"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "string",
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/Start time|End time/"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status code"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "ERROR": {
+                        "color": "red",
+                        "index": 1
+                      },
+                      "OK": {
+                        "color": "green",
+                        "index": 0
+                      },
+                      "UNKNOWN": {
+                        "color": "yellow",
+                        "index": 2
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 3,
+        "showHeader": true
+      },
+      "pluginVersion": "10.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "logboek-munera"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "A",
+          "target": "SELECT trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\", name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\"\nFROM processing_operations\nWHERE start_time > $__timeFrom AND start_time < $__timeTo\nALLOW FILTERING"
+        }
+      ],
+      "title": "Munera (Mijn Gemeente)",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Start time"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "logboek-currus"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "string",
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/Start time|End time/"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status code"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "ERROR": {
+                        "color": "red",
+                        "index": 1
+                      },
+                      "OK": {
+                        "color": "green",
+                        "index": 0
+                      },
+                      "UNKNOWN": {
+                        "color": "yellow",
+                        "index": 2
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 3,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Start time"
+          }
+        ]
+      },
+      "pluginVersion": "10.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "logboek-currus"
+          },
+          "queryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\"\nFROM processing_operations \nWHERE start_time > \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
+          "queryType": "table",
+          "rawQueryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\"\nFROM processing_operations \nWHERE start_time > \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
+          "refId": "A",
+          "timeColumns": [
+            "start_time",
+            "end_time"
+          ]
+        },
+        {
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "logboek-currus"
+          },
+          "hide": false,
+          "queryText": "SELECT\n  a.operation_id AS \"Operation ID\", key AS \"Attribute key\", value AS \"Attribute value\"\nFROM processing_operation_attributes a\nINNER JOIN processing_operations o ON o.trace_id = a.trace_id AND o.operation_id = a.operation_id\nWHERE o.start_time > \"${__from:date:iso}\" AND o.start_time < \"${__to:date:iso}\"",
+          "queryType": "table",
+          "rawQueryText": "SELECT\n  a.operation_id AS \"Operation ID\", key AS \"Attribute key\", value AS \"Attribute value\"\nFROM processing_operation_attributes a\nINNER JOIN processing_operations o ON o.trace_id = a.trace_id AND o.operation_id = a.operation_id\nWHERE o.start_time > \"${__from:date:iso}\" AND o.start_time < \"${__to:date:iso}\"",
+          "refId": "B",
+          "timeColumns": []
+        }
+      ],
+      "title": "Currus (Parkeervergunningsoftware)",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "time",
+                "targetField": "Start time"
+              },
+              {
+                "destinationType": "time",
+                "targetField": "End time"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "Operation ID",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "Attribute key": 7,
+              "Attribute value": 8,
+              "End time": 5,
+              "Foreign operation ID": 10,
+              "Foreign trace ID": 9,
+              "Operation ID": 1,
+              "Operation name": 3,
+              "Parent operation ID": 2,
+              "Start time": 4,
+              "Status code": 6,
+              "Trace ID": 0
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "logboek-lamina"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "string",
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/Start time|End time/"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status code"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "ERROR": {
+                        "color": "red",
+                        "index": 1
+                      },
+                      "OK": {
+                        "color": "green",
+                        "index": 0
+                      },
+                      "UNKNOWN": {
+                        "color": "yellow",
+                        "index": 2
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "logboek-lamina"
+          },
+          "queryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\"\nFROM processing_operations \nWHERE start_time >= \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
+          "queryType": "table",
+          "rawQueryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\"\nFROM processing_operations \nWHERE start_time >= \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
+          "refId": "A",
+          "timeColumns": [
+            "start_time",
+            "end_time"
+          ]
+        },
+        {
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "logboek-lamina"
+          },
+          "hide": false,
+          "queryText": "SELECT\n  a.operation_id AS \"Operation ID\", key AS \"Attribute key\", value AS \"Attribute value\"\nFROM processing_operation_attributes a\nINNER JOIN processing_operations o ON o.trace_id = a.trace_id AND o.operation_id = a.operation_id\nWHERE o.start_time > \"${__from:date:iso}\" AND o.start_time < \"${__to:date:iso}\"",
+          "queryType": "table",
+          "rawQueryText": "SELECT\n  a.operation_id AS \"Operation ID\", key AS \"Attribute key\", value AS \"Attribute value\"\nFROM processing_operation_attributes a\nINNER JOIN processing_operations o ON o.trace_id = a.trace_id AND o.operation_id = a.operation_id\nWHERE o.start_time > \"${__from:date:iso}\" AND o.start_time < \"${__to:date:iso}\"",
+          "refId": "B",
+          "timeColumns": []
+        }
+      ],
+      "title": "Lamina (RDW)",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "time",
+                "targetField": "Start time"
+              },
+              {
+                "destinationType": "time",
+                "targetField": "End time"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "Operation ID",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "Attribute key": 7,
+              "Attribute value": 8,
+              "End time": 5,
+              "Foreign operation ID": 10,
+              "Foreign trace ID": 9,
+              "Operation ID": 1,
+              "Operation name": 3,
+              "Parent operation ID": 2,
+              "Start time": 4,
+              "Status code": 6,
+              "Trace ID": 0
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-2h",
+    "to": "now"
+  },
+  "timeRangeUpdatedDuringEditOrView": false,
+  "timepicker": {},
+  "timezone": "",
+  "title": "Verwerkingen",
+  "uid": "verwerkingen",
+  "version": 1,
+  "weekStart": ""
+}

@@ -1,0 +1,23 @@
+{
+  "packageManager": "yarn@4.2.2",
+  "scripts": {
+    "build": "parcel build --no-source-maps",
+    "watch": "parcel watch --host 127.0.0.1"
+  },
+  "targets": {
+    "default": {
+      "source": [
+        "./assets/app.js"
+      ],
+      "distDir": "./assets/dist"
+    }
+  },
+  "dependencies": {
+    "@tabler/core": "^1.0.0-beta20"
+  },
+  "devDependencies": {
+    "@parcel/core": "^2.12.0",
+    "@parcel/transformer-sass": "^2.12.0",
+    "parcel": "^2.12.0"
+  }
+}

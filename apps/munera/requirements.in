@@ -1,0 +1,5 @@
+django==5.0.6
+django-widget-tweaks==1.5.0
+requests==2.32.2
+
+logboek @ https://github.com/MinBZK/logboek-dataverwerkingen-logboek/archive/e69b156ed96c523bdc35e31d2639f7f7ea56209e.zip#subdirectory=libs/logboek-python

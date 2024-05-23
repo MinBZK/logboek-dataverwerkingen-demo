@@ -1,0 +1,43 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">{% translate "Parking permits" %}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+      {% for parking_permit in parking_permits %}
+      <div class="col-md-6 col-lg-5">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">{{ parking_permit.permit_number }}</h3>
+            <div class="card-actions">
+              <a href="{% url 'parking_permit_edit' parking_permit.id %}" class="btn btn-primary">{% translate "Edit" %}</a>
+            </div>
+          </div>
+
+          <div class="card-body">
+            {% translate "Registration number" %}: {{ parking_permit.registration_number }}<br>
+            {% translate "Valid from" %}: {{ parking_permit.valid_from }}<br>
+            {% translate "Valid to" %}: {{ parking_permit.valid_to }}
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="empty">
+        <p class="empty-title">{% translate "No parking permits found" %}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

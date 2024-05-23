@@ -1,0 +1,23 @@
+{% load static i18n %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'dist/app.css' %}">
+  <title>{% translate "Logout" %} - Mijn Gemeente</title>
+</head>
+<body class=" d-flex flex-column">
+  <div class="page page-center">
+    <div class="container container-tight py-4">
+      <div class="text-center">
+        <div class="my-5">
+          <h2 class="h1">{% translate "Logged out"%}</h2>
+          <p class="fs-h3 text-secondary"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'dist/app.js' %}" defer></script>
+</body>
+</html>
