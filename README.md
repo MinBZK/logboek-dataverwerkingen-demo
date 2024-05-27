@@ -14,7 +14,7 @@ Deze demo bestaat uit de volgede componenten (te vinden in de `apps` directory):
 
 ## Gebruik
 
-Voor het starten van de demo zijn Docker en [Docker Compose](https://docs.docker.com/compose/install/) nodig.
+Voor het starten van de demo zijn [Docker](https://docs.docker.com/get-docker/) en [Docker Compose](https://docs.docker.com/compose/install/) nodig.
 
 1. Maak een kopie van deze repository:
     ```sh
@@ -28,7 +28,9 @@ Voor het starten van de demo zijn Docker en [Docker Compose](https://docs.docker
     make start
     ```
 
-1. Navigeer naar <http://localhost:8080/>. Aanmelden kan met de gebruikersnaam `burger02` en wachtwoord `demo123`.
+1. Navigeer naar <http://localhost:8080/>. Aanmelden kan met de gebruikersnaam `burger` en wachtwoord `demo123`.
+
+1. Bekijk de logboeken via <http://localhost:3000>.
 
 
 ## License

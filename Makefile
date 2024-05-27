@@ -8,7 +8,7 @@ start:
 	@echo "  Gebruikersnaam: burger"
 	@echo "  Wachtwoord: demo123"
 	@echo ""
-	@echo "Bekijk het logboek:"
+	@echo "Bekijk de logboeken:"
 	@echo "  http://localhost:3000"
 
 
