@@ -2,8 +2,6 @@ name: Build
 
 on:
   push:
-    branches:
-      - develop
   workflow_dispatch:
 
 env:
@@ -36,5 +34,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./apps/${{ matrix.app }}
-          push: true
+          push: ${{ github.ref_name == github.event.repository.default_branch }}
           tags: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_REPOSITORY }}/${{ matrix.app }}:latest
