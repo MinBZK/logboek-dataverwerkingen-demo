@@ -37,51 +37,63 @@ Voor het starten van de demo zijn [Docker](https://docs.docker.com/get-docker/) 
 
 ```mermaid
 graph LR
-    subgraph Gemeente
-        subgraph Munera
-            APP_M
-            LIB_PYTHON
-        end
-        subgraph LOGBOEK_G["Logboek"]
-            LOGBOEK_M
-            STORAGE_M
+    subgraph Logging [ ]
+        style Logging fill:none,stroke:none;
+
+        subgraph Gemeente
+            subgraph Munera
+                APP_M
+                LIB_PYTHON
+            end
+            subgraph LOGBOEK_G["Logboek"]
+                LOGBOEK_M
+                STORAGE_M
+            end
+
+            APP_M["Django"] --> LIB_PYTHON
+            LIB_PYTHON["logboek-python lib"] --> |gRPC| LOGBOEK_M["Logboek server"] --> STORAGE_M["Cassandra"]
         end
 
-        APP_M["Django"] --> LIB_PYTHON
-        LIB_PYTHON["logboek-python lib"] --> |gRPC| LOGBOEK_M["Logboek server"] --> STORAGE_M["Cassandra"]
+        subgraph "Parkeervergunningsoftware BV"
+            subgraph Currus
+                API_C
+                LIB_GO_C
+            end
+            subgraph LOGBOEK_P["Logboek"]
+                LOGBOEK_C
+                STORAGE_C
+            end
+
+            API_C["Server"] --> LIB_GO_C["logboek-go lib"]
+            LIB_GO_C --> |gRPC| LOGBOEK_C["Logboek server"] --> STORAGE_C["SQLite"]
+        end
+
+        subgraph "RDW"
+            subgraph Lamina
+                API_L
+                LIB_GO_L
+            end
+            subgraph LOGBOEK_R[Logboek]
+                LOGBOEK_L
+                STORAGE_L
+            end
+
+            API_L["Server"] --> LIB_GO_L["logboek-go lib"]
+            LIB_GO_L --> |gRPC| LOGBOEK_L["Logboek server"] --> STORAGE_L["SQLite"]
+        end
+
+        Burger --> |Browser| Munera
+        APP_M --> |HTTP| Currus
+        API_C --> |HTTP| Lamina
     end
 
-    subgraph "Parkeervergunningsoftware BV"
-        subgraph Currus
-            API_C
-            LIB_GO_C
-        end
-        subgraph LOGBOEK_P["Logboek"]
-            LOGBOEK_C
-            STORAGE_C
-        end
-
-        API_C["Server"] --> LIB_GO_C["logboek-go lib"]
-        LIB_GO_C --> |gRPC| LOGBOEK_C["Logboek server"] --> STORAGE_C["SQLite"]
+    subgraph Inzage
+        Grafana --> STORAGE_M
+        Grafana --> STORAGE_C
+        Grafana --> STORAGE_L
     end
 
-    subgraph "RDW"
-        subgraph Lamina
-            API_L
-            LIB_GO_L
-        end
-        subgraph LOGBOEK_R[Logboek]
-            LOGBOEK_L
-            STORAGE_L
-        end
-
-        API_L["Server"] --> LIB_GO_L["logboek-go lib"]
-        LIB_GO_L --> |gRPC| LOGBOEK_L["Logboek server"] --> STORAGE_L["SQLite"]
-    end
-
-    Burger --> |Browser| Munera
-    APP_M --> |HTTP| Currus
-    API_C --> |HTTP| Lamina
+    Inzage ~~~ Logging
 ```
 
 
