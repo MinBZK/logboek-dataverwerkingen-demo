@@ -36,8 +36,6 @@ func New(address, basePath, logboekEndpoint string) (*Server, error) {
 		return nil, err
 	}
 
-	log.Println(commit)
-
 	operator := logboek.NewProcessingOperator(
 		logboek.Resource{
 			Name:    "lamina",

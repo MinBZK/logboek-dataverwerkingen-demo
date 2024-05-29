@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 from django.conf import settings
 
-from logboek import init_processing_operator, Resource
+from logboek import Resource, init_processing_operator
 from logboek.handlers import GrpcProcessingOperationHandler
 
 from munera import __commit__, __version__
