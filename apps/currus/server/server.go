@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -13,6 +14,11 @@ import (
 	"github.com/MinBZK/logboek-dataverwerkingen-logboek/libs/logboek-go"
 	"github.com/MinBZK/logboek-dataverwerkingen-logboek/libs/logboek-go/attribute"
 	logboek_http "github.com/MinBZK/logboek-dataverwerkingen-logboek/libs/logboek-go/http"
+)
+
+var (
+	version = "0.1.0"
+	commit  = "unknown"
 )
 
 type Server struct {
@@ -30,6 +36,16 @@ func New(address, basePath, laminaURL, logboekEndpoint string) (*Server, error) 
 		return nil, err
 	}
 
+	log.Println(commit)
+
+	operator := logboek.NewProcessingOperator(
+		logboek.Resource{
+			Name:    "currus",
+			Version: fmt.Sprintf("%s-%s", version, commit),
+		},
+		handler,
+	)
+
 	s := &Server{
 		srv: &http.Server{
 			Addr:              address,
@@ -38,7 +54,7 @@ func New(address, basePath, laminaURL, logboekEndpoint string) (*Server, error) 
 		db:       NewDB(),
 		lc:       NewLaminaClient(laminaURL),
 		l:        log.Default(),
-		operator: logboek.NewProcessingOperator(handler),
+		operator: operator,
 	}
 
 	r := chi.NewRouter()

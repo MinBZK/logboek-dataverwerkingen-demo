@@ -164,8 +164,8 @@ idna==3.6 \
     --hash=sha256:9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca \
     --hash=sha256:c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f
     # via requests
-logboek @ https://github.com/MinBZK/logboek-dataverwerkingen-logboek/archive/e69b156ed96c523bdc35e31d2639f7f7ea56209e.zip#subdirectory=libs/logboek-python \
-    --hash=sha256:0b8a2d213cd53fb298869e8e2d4974960936fbba2dbb18b558151b30712a7b3e
+logboek @ https://github.com/MinBZK/logboek-dataverwerkingen-logboek/archive/7a3ed79c4cf4eb9f296fe26cea06ecae6782dea6.zip#subdirectory=libs/logboek-python \
+    --hash=sha256:0da87e09ac6281d994963187d7607332a69a4fd61ab6984dbb1399c853b045e1
     # via -r requirements.in
 protobuf==5.26.1 \
     --hash=sha256:38aa5f535721d5bb99861166c445c4105c4e285c765fbb2ac10f116e32dcd46d \

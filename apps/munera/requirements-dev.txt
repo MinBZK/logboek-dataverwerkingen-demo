@@ -215,8 +215,8 @@ isort==5.13.2 \
     --hash=sha256:48fdfcb9face5d58a4f6dde2e72a1fb8dcaf8ab26f95ab49fab84c2ddefb0109 \
     --hash=sha256:8ca5e72a8d85860d5a3fa69b8745237f2939afe12dbf656afbcb47fe72d947a6
     # via -r requirements-dev.in
-logboek @ https://github.com/MinBZK/logboek-dataverwerkingen-logboek/archive/e69b156ed96c523bdc35e31d2639f7f7ea56209e.zip#subdirectory=libs/logboek-python \
-    --hash=sha256:0b8a2d213cd53fb298869e8e2d4974960936fbba2dbb18b558151b30712a7b3e
+logboek @ https://github.com/MinBZK/logboek-dataverwerkingen-logboek/archive/7a3ed79c4cf4eb9f296fe26cea06ecae6782dea6.zip#subdirectory=libs/logboek-python \
+    --hash=sha256:0da87e09ac6281d994963187d7607332a69a4fd61ab6984dbb1399c853b045e1
     # via -r requirements.txt
 mccabe==0.7.0 \
     --hash=sha256:348e0240c33b60bbdf4e523192ef919f28cb2c3d7d5c7794f74009290f236325 \

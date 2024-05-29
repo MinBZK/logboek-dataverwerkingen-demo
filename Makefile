@@ -1,6 +1,6 @@
 .PHONY: start
 start:
-	docker compose up --detach --remove-orphans
+	docker compose up --detach --force-recreate --remove-orphans
 	@echo ""
 	@echo "Logboek dataverwerkingen demo is gestart."
 	@echo "Ga naar http://localhost:8080 voor de "Mijn Gemeente"-applicatie"
@@ -18,7 +18,7 @@ stop:
 
 .PHONY: build
 build:
-	docker compose build
+	docker compose build --build-arg "BUILD_COMMIT=$(shell git rev-parse --short HEAD)"
 
 .PHONY: clean
 clean:

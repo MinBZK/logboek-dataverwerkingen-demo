@@ -133,7 +133,7 @@
           "queryType": "query",
           "rawQuery": true,
           "refId": "A",
-          "target": "SELECT trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\", name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\"\nFROM processing_operations\nWHERE start_time > $__timeFrom AND start_time < $__timeTo\nALLOW FILTERING"
+          "target": "SELECT trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\", name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\", resource_name AS \"Resource name\", resource_version AS \"Resource version\"\nFROM processing_operations\nWHERE start_time > $__timeFrom AND start_time < $__timeTo\nALLOW FILTERING"
         }
       ],
       "title": "Munera (Mijn Gemeente)",
@@ -269,9 +269,9 @@
             "type": "frser-sqlite-datasource",
             "uid": "logboek-currus"
           },
-          "queryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\"\nFROM processing_operations \nWHERE start_time > \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
+          "queryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\",\n  resource_name AS \"Resource name\", resource_version AS \"Resource version\"\nFROM processing_operations \nWHERE start_time > \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
           "queryType": "table",
-          "rawQueryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\"\nFROM processing_operations \nWHERE start_time > \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
+          "rawQueryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\",\n  resource_name AS \"Resource name\", resource_version AS \"Resource version\"\nFROM processing_operations \nWHERE start_time > \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
           "refId": "A",
           "timeColumns": [
             "start_time",
@@ -446,9 +446,9 @@
             "type": "frser-sqlite-datasource",
             "uid": "logboek-lamina"
           },
-          "queryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\"\nFROM processing_operations \nWHERE start_time >= \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
+          "queryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\",\n  resource_name AS \"Resource name\", resource_version AS \"Resource version\"\nFROM processing_operations \nWHERE start_time >= \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
           "queryType": "table",
-          "rawQueryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\"\nFROM processing_operations \nWHERE start_time >= \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
+          "rawQueryText": "SELECT\n  trace_id AS \"Trace ID\", operation_id AS \"Operation ID\", parent_operation_id AS \"Parent operation ID\",\n  name AS \"Operation name\", start_time AS \"Start time\", end_time AS \"End time\", status_code AS \"Status code\",\n  foreign_trace_id AS \"Foreign trace ID\", foreign_operation_id AS \"Foreign operation ID\",\n  resource_name AS \"Resource name\", resource_version AS \"Resource version\"\nFROM processing_operations \nWHERE start_time >= \"${__from:date:iso}\" AND start_time < \"${__to:date:iso}\"\nORDER BY start_time DESC",
           "refId": "A",
           "timeColumns": [
             "start_time",

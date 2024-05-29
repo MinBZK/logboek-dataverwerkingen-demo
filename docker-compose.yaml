@@ -4,7 +4,10 @@ services:
   munera:
     image: ${MUNERA_IMAGE}
     container_name: munera
-    build: ./apps/munera
+    build:
+      context: ./apps/munera
+      args:
+        - BUILD_COMMIT
     ports:
       - "127.0.0.1:${MUNERA_PORT}:${MUNERA_PORT}"
     environment:
@@ -43,7 +46,10 @@ services:
   currus:
     image: ${CURRUS_IMAGE}
     container_name: currus
-    build: ./apps/currus
+    build:
+      context: ./apps/currus
+      args:
+        - BUILD_COMMIT
     environment:
       - LISTEN_ADDRESS=${CURRUS_LISTEN_ADDRESS}
       - LOGBOEK_ENDPOINT=${CURRUS_LOGBOEK_ENDPOINT}
@@ -65,7 +71,10 @@ services:
   lamina:
     image: ${LAMINA_IMAGE}
     container_name: lamina
-    build: ./apps/lamina
+    build:
+      context: ./apps/lamina
+      args:
+        - BUILD_COMMIT
     environment:
       - LISTEN_ADDRESS=${LAMINA_LISTEN_ADDRESS}
       - LOGBOEK_ENDPOINT=${LAMINA_LOGBOEK_ENDPOINT}

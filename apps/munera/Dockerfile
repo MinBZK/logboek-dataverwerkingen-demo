@@ -1,4 +1,5 @@
 ARG UWSGI_VERSION=2.0.25.1
+ARG BUILD_COMMIT="unknown"
 
 FROM python:3.12.3-alpine AS base
 
@@ -40,6 +41,9 @@ COPY --from=build-assets /app/assets/dist assets/dist
 COPY munera munera
 COPY manage.py .
 COPY docker/entrypoint.sh docker/uwsgi.ini .
+
+ARG BUILD_COMMIT
+RUN sed -i "s/\(__commit__ = \)\(.*\)/\1\"${BUILD_COMMIT}\"/g" munera/__init__.py
 
 ENV MUNERA_INSTANCE_DIR=/var/lib/munera
 RUN mkdir -p "${MUNERA_INSTANCE_DIR}"
