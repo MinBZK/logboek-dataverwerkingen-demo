@@ -3,7 +3,7 @@ module github.com/MinBZK/logboek-dataverwerkingen-demo/apps/lamina
 go 1.22
 
 require (
-	github.com/MinBZK/logboek-dataverwerkingen-logboek/libs/logboek-go v0.0.0-20240529115936-7a3ed79c4cf4
+	github.com/MinBZK/logboek-dataverwerkingen-logboek/libs/logboek-go v0.0.0-20240529122134-32445858c931
 	github.com/go-chi/chi/v5 v5.0.12
 	github.com/go-chi/render v1.0.3
 )

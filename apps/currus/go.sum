@@ -1,5 +1,5 @@
-github.com/MinBZK/logboek-dataverwerkingen-logboek/libs/logboek-go v0.0.0-20240529115936-7a3ed79c4cf4 h1:UCszsGdESYCCEX9qAVFNrOt2sGO0k60gFt5ChSrbIPE=
-github.com/MinBZK/logboek-dataverwerkingen-logboek/libs/logboek-go v0.0.0-20240529115936-7a3ed79c4cf4/go.mod h1:DmEj9fpw5HlQ7J8vn2nAZ/LlXHw7EA5WIpm161lUvRk=
+github.com/MinBZK/logboek-dataverwerkingen-logboek/libs/logboek-go v0.0.0-20240529122134-32445858c931 h1:40TtsyE+7nwLedKs1xqbXLMycPAikTM5gnxLsIsJPII=
+github.com/MinBZK/logboek-dataverwerkingen-logboek/libs/logboek-go v0.0.0-20240529122134-32445858c931/go.mod h1:DmEj9fpw5HlQ7J8vn2nAZ/LlXHw7EA5WIpm161lUvRk=
 github.com/ajg/form v1.5.1 h1:t9c7v8JUKu/XxOGBU0yjNpaMloxGEJhUkqFRq0ibGeU=
 github.com/ajg/form v1.5.1/go.mod h1:uL1WgH+h2mgNtvBq0339dVnzXdBETtL2LeUXaIv25UY=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
